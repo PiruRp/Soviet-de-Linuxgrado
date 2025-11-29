@@ -1,0 +1,55 @@
+#Variables globales:
+pago = 1
+contador_de_gente = 0
+suministros = 10
+suministro_precio_unidad = 0
+
+def _funcionamiento():
+        global suministro_precio_unidad
+        suministro_precio_unidad = (suministros / contador_de_gente)
+        print("precio de la comida =" + suministro_precio_unidad)
+        print("cantidad de comida disponible" + suministros)
+        print("númro de personas" + contador_de_gente)
+
+
+def _crear_personaje():
+    global contador_de_gente
+    contador_de_gente += 1
+    print(f"Personaje creado. Total de personajes: {contador_de_gente}") 
+    def _personaje():
+        personajes.append(_personaje)
+        global contador_de_gente, pago, suministros, suministro_precio_unidad
+        estrés = 0
+        dinero = 0
+        comida = 0
+        hambre = True
+        inanición = False
+        if estrés < 5 and hambre == True:
+                    estrés += 1
+                    dinero += pago
+                    suministros += 1 
+        if dinero >= 1:
+                    dinero -= suministro_precio_unidad
+                    comida += 1
+                    suministros -= 1
+        if hambre == True:
+                    comida -= 1
+                    hambre = False
+        if hambre == True and comida == 0:
+                    inanición = True
+        if comida >= 1 and hambre == False:
+                    _crear_personaje()
+        if inanición == True and comida == 0:
+                    personajes.remove(_personaje)
+        if hambre == False:
+                    inanición = False
+        print("hambre =" + hambre)
+        print("inanición =" + inanición)
+        print("dinero =" + dinero)
+        print("comida =" + comida)
+def _tick():
+    while True:
+        if input() == "W":
+            _funcionamiento()
+            _crear_personaje()
+_tick()
